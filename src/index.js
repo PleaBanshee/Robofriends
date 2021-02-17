@@ -2,6 +2,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css'; // you can import css files in React apps
+import App from './App.js';
 import CardList from './CardList.js';
 import { robots } from './robots';
 import 'tachyons' // react styling
@@ -10,7 +11,7 @@ import 'tachyons' // react styling
 // The purpose of the function is to display the specified HTML code inside the specified HTML element.
 ReactDOM.render(
   <React.StrictMode> {/* helps find potential errors */}
-    <CardList robots={robots}/>
+    <App/>
   </React.StrictMode>,
   document.getElementById('root')
 );
