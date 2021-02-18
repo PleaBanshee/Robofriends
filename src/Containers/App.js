@@ -36,6 +36,16 @@ class App extends Component {
         });
         return !robots.length ?
         <h1 className="tc f1">LOADING...</h1> :
+        !filterRobots.length ? 
+        (<div className="tc">
+            <h1 className="tc f1">ROBOT DOESN'T EXIST...</h1>
+            <SearchBox searchChange={this.onSearchChange} />
+            <Scroll> {/* CardList is a child of Scroll */}
+                <ErrorBoundary> {/* if anything in CardList fails, an error will be displayed */}
+                    <CardList robots={filterRobots}/> {/* state can be passed down as props to children */}
+                </ErrorBoundary>
+            </Scroll>
+        </div>) :
         // remember to always return one component
         <div className="tc">
             <h1 className="mb3 f1">Robofriends</h1>
