@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import CardList from '../Components/CardList.js';
 import SearchBox from '../Components/SearchBox.js';
 import Scroll from '../Components/Scroll.js';
+import ErrorBoundary from '../Components/ErrorBoundary.js';
 import './App.css'
 
 //  The State of a component is an object that holds some information that may change over the lifetime of the component.
@@ -40,7 +41,9 @@ class App extends Component {
             <h1 className="mb3 f1">Robofriends</h1>
             <SearchBox searchChange={this.onSearchChange} />
             <Scroll> {/* CardList is a child of Scroll */}
-                <CardList robots={filterRobots}/> {/* state can be passed down as props to children */}
+                <ErrorBoundary> {/* if anything in CardList fails, an error will be displayed */}
+                    <CardList robots={filterRobots}/> {/* state can be passed down as props to children */}
+                </ErrorBoundary>
             </Scroll>
         </div>
     }
