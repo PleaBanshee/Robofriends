@@ -2,9 +2,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css'; // you can import css files in React apps
-import App from './App.js';
-import CardList from './CardList.js';
-import { robots } from './robots';
+import App from './Containers/App.js';
 import 'tachyons' // react styling
 
 // The ReactDOM.render() function takes two arguments, HTML code and an HTML element.

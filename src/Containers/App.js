@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import CardList from './CardList.js';
-import SearchBox from './SearchBox.js';
+import CardList from '../Components/CardList.js';
+import SearchBox from '../Components/SearchBox.js';
+import Scroll from '../Components/Scroll.js';
 import './App.css'
 
 //  The State of a component is an object that holds some information that may change over the lifetime of the component.
@@ -28,20 +29,20 @@ class App extends Component {
     }
 
     render() {
-        const filterRobots = this.state.robots.filter(robots => {
-            return robots.name.toLowerCase().includes(this.state.searchField.toLowerCase()); // check if search value exists in robots array. Works for upper and lowercase searches
+        const { robots, searchField } = this.state;
+        const filterRobots = robots.filter(robot => {
+            return robot.name.toLowerCase().includes(searchField.toLowerCase()); // check if search value exists in robots array. Works for upper and lowercase searches
         });
-        if (this.state.robots.length === 0) {
-            return <h1 className="tc f1">LOADING...</h1>
-        } else {
-            return ( // remember to always return one component
-                <div className="tc">
-                    <h1 className="mb3 f1">Robofriends</h1>
-                    <SearchBox searchChange={this.onSearchChange} />
-                    <CardList robots={filterRobots}/> {/* state can be passed down as props to children */}
-                </div>
-            );
-        }
+        return !robots.length ?
+        <h1 className="tc f1">LOADING...</h1> :
+        // remember to always return one component
+        <div className="tc">
+            <h1 className="mb3 f1">Robofriends</h1>
+            <SearchBox searchChange={this.onSearchChange} />
+            <Scroll> {/* CardList is a child of Scroll */}
+                <CardList robots={filterRobots}/> {/* state can be passed down as props to children */}
+            </Scroll>
+        </div>
     }
 }
 
