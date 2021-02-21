@@ -18,9 +18,9 @@ class App extends Component {
 
     // Invokes when constructor() and render() are done running. Renders again after componentDidMount()
     componentDidMount() {
-        fetch('https://jsonplaceholder.typicode.com/users') // fetch resource accross servers
-        .then(response => response.json())
-        .then(users => this.setState({ robots: users}));
+        fetch('https://jsonplaceholder.typicode.com/users') // fetch resource accross servers (JSON objects)
+        .then(response => response.json())  // once repsonse is returned, convert it to json
+        .then(users => this.setState({ robots: users})); // once response have been converted to json, set the state of the component
     }
 
     // Search method
